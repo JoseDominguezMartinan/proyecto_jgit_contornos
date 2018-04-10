@@ -33,9 +33,9 @@ public class Metodos {
      * metodo para indicar el repositorio sobre el cual vamos a trabajar
      * @param ruta url del repositorio sobre el que vamos a trabajar
      */
-    static Repository repository = null; // variable estatica de tipo repositorio 
+    static Repository repository ; // variable estatica de tipo repositorio 
     static Git git=null; // variable estatica de tipo git 
-    public static void crearRepositorio(String ruta){
+    public static void marcarRepo(String ruta){
      FileRepositoryBuilder repositoryBuilder = new FileRepositoryBuilder(); // creamos un nuevo repository builder 
             
         try {
@@ -78,8 +78,8 @@ public class Metodos {
     public static void ClonarRepo(String direccion, String nome) {
         try {
             Git.cloneRepository()
-                    .setURI("direccion") // marcamos la url a clonar 
-                    .setDirectory(new File("C:\\Users\\jose\\Documents\\NetBeansProjects\\" + nome)) // creado en pc de casa con ruta de windows ,en caso de utilizar en clase cambiar la ruta, marcamos la ruta donde se guardara el repositorio clonado 
+                    .setURI(direccion) // marcamos la url a clonar 
+                    .setDirectory(new File("C:\\Users\\jose\\Documents\\NetBeansProjects\\"+nome)) // creado en pc de casa con ruta de windows ,en caso de utilizar en clase cambiar la ruta, marcamos la ruta donde se guardara el repositorio clonado 
                     .setCloneAllBranches(true) // indicamos que se clonen todas las ramas del repositorio indicado 
                     .call();
         } catch (GitAPIException ex) {
@@ -96,7 +96,6 @@ public class Metodos {
 
     public static void crearCommit(String mensaje, String ruta) {
         try {
-           
             AddCommand add = git.add(); // objeto addcopmand 
             try {
                 add.addFilepattern(ruta).call();
@@ -128,6 +127,7 @@ public class Metodos {
         }
          
     }
+    
     /**
      * metodo para inicializar el repositorio en el ide
      * @param ruta ruta local del repositorio en cuestion 
