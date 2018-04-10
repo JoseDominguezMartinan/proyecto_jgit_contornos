@@ -12,6 +12,7 @@ import org.eclipse.jgit.api.Git;
 import java.io.File;
 import org.eclipse.jgit.api.AddCommand;
 import org.eclipse.jgit.api.CommitCommand;
+import org.eclipse.jgit.api.InitCommand;
 import org.eclipse.jgit.api.PushCommand;
 import org.eclipse.jgit.api.errors.GitAPIException;
 import org.eclipse.jgit.storage.file.FileRepositoryBuilder;
@@ -127,6 +128,17 @@ public class Metodos {
         }
          
     }
+    /**
+     * metodo para inicializar el repositorio en el ide
+     * @param ruta ruta local del repositorio en cuestion 
+     */
+public static void inicializarRepositorio(String ruta){
+    InitCommand repositorio=new InitCommand();
+        try {
+            repositorio.setDirectory(new File(ruta)).call(); // marcamos la ruta del repositorio a inicializar con la url que pedimos al usuario 
+        } catch (GitAPIException ex) {
+            Logger.getLogger(Metodos.class.getName()).log(Level.SEVERE, null, ex);
+        }
     
-
+}
 }
