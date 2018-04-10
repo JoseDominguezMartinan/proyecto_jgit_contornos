@@ -5,10 +5,28 @@
  */
 package com.mycompany.proyectomavencontornos;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.kohsuke.github.GHCreateRepositoryBuilder;
+import org.kohsuke.github.GitHub;
+
 /**
  *
  * @author jose
  */
 public class Metodos {
+    
+    public static void crearRepo(String nomeRepo){
+        try {
+            GitHub github=GitHub.connect();
+            GHCreateRepositoryBuilder builder;
+            builder=github.createRepository(nomeRepo);
+            builder.create();
+        } catch (IOException ex) {
+            System.out.println("error"+ex);
+        }
+        
+    }
     
 }
